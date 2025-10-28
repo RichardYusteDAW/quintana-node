@@ -7,6 +7,7 @@ import { getAbsolutePath } from '../../../01-common/tools/paths.js';
 
 const appMiddleware = (app) => {
     const { ORIGIN_ALLOWED } = config;
+    const folderPath = getAbsolutePath('../../../db/images');
 
     app.use(cors({
         origin: JSON.parse(ORIGIN_ALLOWED),
@@ -15,7 +16,7 @@ const appMiddleware = (app) => {
 
     app.use(express.json());
     app.use('/api', router);
-    app.use('/images', express.static(getAbsolutePath('../../../images')));
+    app.use('/images', express.static(folderPath));
 };
 
 export default appMiddleware;
