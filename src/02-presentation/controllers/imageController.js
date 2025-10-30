@@ -3,6 +3,8 @@ import { getImageService } from "../../01-common/containers/imageIoC.js";
 /********** DEPENDENCIES **********/
 const imageService = getImageService();
 
+
+/********** METHODS **********/
 const getAll = async (req, res) => {
     try {
         const files = await imageService.getAll();

@@ -3,6 +3,7 @@ import { getVideoService } from "../../01-common/containers/videoIoC.js";
 /********** DEPENDENCIES **********/
 const videoService = getVideoService();
 
+
 /********** METHODS **********/
 const getAll = async (req, res) => {
     try {

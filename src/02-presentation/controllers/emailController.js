@@ -4,7 +4,7 @@ import { getEmailService } from '../../01-common/containers/emailIoC.js';
 const emailService = getEmailService();
 
 
-/********** METODOS **********/
+/********** METHODS **********/
 const sendEmail = async (req, res) => {
     try {
         const { name, phone, email, message } = req.body;
