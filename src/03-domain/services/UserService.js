@@ -12,6 +12,7 @@ class UserService {
 
     async login(email, password) {
         const user = await this.findByEmail(email);
+        console.log(await this.hashPassword(password));
 
         const matchPass = await bcryptjs.compare(password, user.passwordHash);
         if (!matchPass) throw new Error("Incorrect password");
@@ -25,6 +26,18 @@ class UserService {
         if (!foundUser) throw new Error("User not found");
 
         return foundUser;
+    }
+
+    async hashPassword(password) {
+        // Generate salt with 10 iterations
+        const salt = await bcryptjs.genSalt(10);
+        if (!salt) throw new Error("Salt generation failed");
+
+        // Generate hash and return it
+        const hash = await bcryptjs.hash(password, salt);
+        if (!hash) throw new Error("Hash generation failed");
+
+        return hash;
     }
 }
 

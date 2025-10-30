@@ -1,4 +1,4 @@
-import JWTService from "../../03-domain/services/JWTService";
+import JWTService from "../../03-domain/services/JWTService.js";
 
 let jwtService;
 

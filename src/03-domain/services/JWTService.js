@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET, JWT_LIFETIME, JWT_REFRESH_SECRET, JWT_REFRESH_LIFETIME } from '../../config.js';
+import config from '../../config.js';
 
 class JWTService {
 
     generateAccessToken(email) {
         try {
-            return jwt.sign({ email }, JWT_SECRET, { expiresIn: JWT_LIFETIME });
+            return jwt.sign({ email }, config.JWT_SECRET, { expiresIn: config.JWT_LIFETIME });
         } catch (error) {
             throw error;
         }
@@ -13,7 +13,7 @@ class JWTService {
 
     generateRefreshToken(email) {
         try {
-            return jwt.sign({ email }, JWT_REFRESH_SECRET, { expiresIn: JWT_REFRESH_LIFETIME });
+            return jwt.sign({ email }, config.JWT_REFRESH_SECRET, { expiresIn: config.JWT_REFRESH_LIFETIME });
         } catch (error) {
             throw error;
         }
@@ -23,7 +23,7 @@ class JWTService {
         if (!token) throw new Error("Access token is required");
 
         try {
-            const payload = jwt.verify(token, JWT_SECRET, options);
+            const payload = jwt.verify(token, config.JWT_SECRET, options);
             return payload.email;
         } catch (error) {
             if (error.name === 'TokenExpiredError')
@@ -36,7 +36,7 @@ class JWTService {
         if (!refreshToken) throw new Error("Refresh token is required");
 
         try {
-            const payload = jwt.verify(refreshToken, JWT_REFRESH_SECRET);
+            const payload = jwt.verify(refreshToken, config.JWT_REFRESH_SECRET);
 
             if (payload.email !== userEmail) throw new Error();
 
