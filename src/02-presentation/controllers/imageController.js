@@ -29,7 +29,7 @@ const upload = async (req, res) => {
         res.status(201).json({ message: 'Imagen subida correctamente', file: req.file });
 
     } catch (err) {
-        console.log(err);
+        console.error(err);
         res.status(500).json({ message: 'Error al subir la imagen' });
     }
 };

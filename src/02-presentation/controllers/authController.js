@@ -18,7 +18,7 @@ const login = async (req, res) => {
         res.status(200).json({ accessToken, refreshToken });
 
     } catch (error) {
-        console.log(error);
+        console.error(error);
         if (error.message === 'User not found' || error.message === 'Incorrect password')
             return res.status(401).json({ error: error.message });
 

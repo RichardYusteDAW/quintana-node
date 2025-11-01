@@ -6,7 +6,7 @@ class VideoService {
     #filePath;
 
     constructor() {
-        this.#filePath = getAbsolutePath('../../../db/videos.json');
+        this.#filePath = getAbsolutePath('../../04-persistence/db/videos.json');
     }
 
     async getAll() {

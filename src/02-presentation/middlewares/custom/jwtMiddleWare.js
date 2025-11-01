@@ -1,5 +1,5 @@
 import { getUserService } from "../../../01-common/containers/userIoC.js";
-import { getJWTService } from "../../../03-domain/services/JWTService.js";
+import { getJWTService } from "../../../01-common/containers/jwtIoC.js";
 
 /********** DEPENDENCIES **********/
 const userService = getUserService();
@@ -12,9 +12,9 @@ const jwtMiddleware = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
 
-        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        if (!authHeader || !authHeader.startsWith('Bearer '))
             return res.status(401).json({ jwt: "Access token is missing or malformed" });
-        }
+
 
         const token = authHeader.split(' ')[1];
         const email = await jwtService.validateAccessToken(token);
@@ -27,4 +27,4 @@ const jwtMiddleware = async (req, res, next) => {
     }
 }
 
-export default jwtMiddleware;
+export { jwtMiddleware };

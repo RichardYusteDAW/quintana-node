@@ -8,7 +8,7 @@ class ImageService {
     #folderPath;
 
     constructor() {
-        this.#folderPath = getAbsolutePath('../../../db/images');
+        this.#folderPath = getAbsolutePath('../../04-persistence/db/images');
     }
 
     async getAll() {

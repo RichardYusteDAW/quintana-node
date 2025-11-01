@@ -7,7 +7,7 @@ import { getAbsolutePath } from '../../../01-common/tools/paths.js';
 
 const appMiddleware = (app) => {
     const { ORIGIN_ALLOWED } = config;
-    const folderPath = getAbsolutePath('../../../db/images');
+    const folderPath = getAbsolutePath('../../04-persistence/db/images');
 
     app.use(cors({
         origin: JSON.parse(ORIGIN_ALLOWED),

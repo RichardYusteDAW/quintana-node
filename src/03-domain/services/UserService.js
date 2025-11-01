@@ -4,22 +4,22 @@ import bcryptjs from 'bcryptjs';
 
 class UserService {
 
-    #userPath;
+    #filePath;
 
     constructor() {
-        this.#userPath = getAbsolutePath('../../../db/users.json');
+        this.#filePath = getAbsolutePath('../../04-persistence/db/users.json');
     }
 
     async login(email, password) {
         const user = await this.findByEmail(email);
-        console.log(await this.hashPassword(password));
+        //console.log(await this.hashPassword(password));
 
         const matchPass = await bcryptjs.compare(password, user.passwordHash);
         if (!matchPass) throw new Error("Incorrect password");
     }
 
     async findByEmail(email) {
-        const data = await readFile(this.#userPath, 'utf-8');
+        const data = await readFile(this.#filePath, 'utf-8');
         const user = JSON.parse(data);
 
         const foundUser = user.find(u => u.email === email);
